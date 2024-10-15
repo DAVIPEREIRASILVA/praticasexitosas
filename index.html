@@ -9,6 +9,81 @@
     <link type="text/css" href="./arquivos/estilo.css" rel="stylesheet">
     <style>
 
+
+
+
+
+
+
+
+
+
+/* Estilos para o modal */
+        .modal {
+            display: none; /* Escondido por padrão */
+            position: fixed; /* Fica fixo na tela */
+            z-index: 1; /* Fica acima de outros elementos */
+            left: 0;
+            top: 0;
+            width: 100%; /* Largura total */
+            height: 100%; /* Altura total */
+            overflow: auto; /* Adiciona rolagem se necessário */
+            background-color: rgb(0,0,0); /* Cor de fundo */
+            background-color: rgba(0,0,0,0.4); /* Fundo semi-transparente */
+        }
+
+        /* Estilos para o conteúdo do modal */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* Margem automática para centralizar */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px; /* Largura do modal */
+        }
+
+        /* Estilo do botão */
+        .button {
+            background-color: #4CAF50; /* Verde */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .button:hover {
+            background-color: #45a049; /* Verde escuro ao passar o mouse */
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .corpo {
     margin: 5px auto;  /* Margens superior e inferior de 5px, centralizado horizontalmente */
     padding: 0 10px;   /* Padding interno lateral reduzido */
@@ -108,7 +183,7 @@
 
         #bannerView {
  
-            margin-top: -360px;
+            margin-top: -500px;
             text-align: center;
             display: none; /* Escondido até carregar um banner */
         }
@@ -173,31 +248,11 @@
             margin-left: 5px; /* Margem para o ícone */
         }
     </style>
-    <script>
-        function handleVote(event) {
-            event.preventDefault(); // Impede o redirecionamento do link
-            const nome = "Maria"; // Nome da pessoa
-            const valor = 20; // Valor associado ao voto
-            const url = https://script.google.com/macros/s/AKfycbwP2xtiBdArSzS3uZnCHSOOsaKqI5S0WhwCvNQn0juR3DLZuNoyByekGuHZCAjsAkXl/exec?nome=${encodeURIComponent(nome)}&valor=${encodeURIComponent(valor)};
-            
-            // Aqui você pode fazer a requisição para o Google Apps Script usando Fetch API
-            fetch(url)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erro na resposta do servidor');
-                    }
-                    return response.text(); // ou response.json() se o retorno for JSON
-                })
-                .then(data => {
-                    console.log('Resposta do servidor:', data);
-                    alert('Voto registrado com sucesso!'); // Mensagem de sucesso
-                })
-                .catch(error => {
-                    console.error('Erro:', error);
-                    alert('Erro ao registrar o voto.'); // Mensagem de erro
-                });
-        }
-    </script>
+
+
+
+
+
 	
 </head>
 <body>
@@ -283,6 +338,75 @@
 </div>
 
 <script>
+
+
+
+
+
+  function votar2(nome, valor) {
+    const url = 'https://script.google.com/macros/s/AKfycbwP2xtiBdArSzS3uZnCHSOOsaKqI5S0WhwCvNQn0juR3DLZuNoyByekGuHZCAjsAkXl/exec?nome=' + nome + '&valor=' + valor;
+
+    fetch(url)
+      .then(response => response.text()) // Ou use .json() se o retorno for JSON
+      .then(data => {
+        console.log("Requisição bem-sucedida:", data);
+        alert("Voto computado com sucesso!");
+      })
+
+
+
+      .catch(error => console.error("Erro:", error));
+    
+    return false; // Evita que a página recarregue
+Location.reload()
+  }
+
+
+
+
+
+
+
+function votar(nome, valor) {
+  const url = 'https://script.google.com/macros/s/AKfycbwP2xtiBdArSzS3uZnCHSOOsaKqI5S0WhwCvNQn0juR3DLZuNoyByekGuHZCAjsAkXl/exec?nome=' + nome + '&valor=' + valor;
+
+  // Mostra o overlay
+  document.getElementById('overlay').style.display = 'flex';
+
+  fetch(url)
+    .then(response => response.text()) // Ou use .json() se o retorno for JSON
+    .then(data => {
+      console.log("Requisição bem-sucedida:", data);
+
+      // Oculta o overlay antes de mostrar o alert
+      document.getElementById('overlay').style.display = 'none';
+      alert("Voto computado com sucesso!");
+
+      // Refresh na página após o sucesso da requisição
+      location.reload();
+    })
+    .catch(error => {
+      console.error("Erro:", error);
+      
+      // Oculta o overlay em caso de erro
+      document.getElementById('overlay').style.display = 'none';
+      alert("Ocorreu um erro ao computar o voto.");
+    });
+
+  return false; // Evita que a página recarregue imediatamente
+}
+
+
+
+
+
+
+
+
+
+
+
+
   const searchField = document.getElementById("searchField");
         const virtualKeyboard = document.getElementById("virtualKeyboard");
 
@@ -366,7 +490,7 @@ function searchWorks() {
 }
 	
 // Função para carregar o banner na própria página e esconder as categorias
-function loadBanner(bannerPath) {
+function loadBanner(bannerPath, idtrabalho) {
     // Ocultar todas as categorias, campo de busca e teclado virtual
     const elementsToHide = ['filterButtons', 'tables-section', 'searchField', 'searchLegend', 'logo', 'teclado'];
     elementsToHide.forEach(function (id) {
@@ -379,7 +503,13 @@ function loadBanner(bannerPath) {
     // Mostrar o banner na div e o menu fixo
     const bannerView = document.getElementById('bannerView');
     if (bannerView) {
-        bannerView.innerHTML = `<img src="${bannerPath}" alt="Banner" style="width: 100%; height: auto;">`;
+        bannerView.innerHTML = `
+
+
+ <button class="btn btn-danger" onclick="votar('Desconhecido', ${idtrabalho})">VOTAR NESSE TRABALHO !</button>
+
+
+<img src="${bannerPath}" alt="Banner" style="width: 100%; height: auto;">`;
         bannerView.style.display = 'block'; // Exibe o banner
         bannerView.style.width = '90vw'; // Garante que a div ocupe toda a largura da viewport
         bannerView.style.overflow = 'hidden'; // Impede barras de rolagem
@@ -416,7 +546,6 @@ function createTables() {
                       <th>Nome do Trabalho</th>
                       <th>Autores</th>
                       <th>Banner</th>
-		      <th>Votar</th>
 		      
                     </tr>
                   </thead>
@@ -428,8 +557,7 @@ function createTables() {
           <tr>
             <td>${title}</td>
             <td>${author}</td>
-            <td><span class="pdf-icon" onclick="loadBanner('trabalhos/${id_trabalho}.jpg')">📄</span></td>
-	    <td><a href="https://script.google.com/macros/s/AKfycbwP2xtiBdArSzS3uZnCHSOOsaKqI5S0WhwCvNQn0juR3DLZuNoyByekGuHZCAjsAkXl/exec?nome=Maria&amp;valor=${id_trabalho}" onclick="handleVote(event)"><span class="fas fa-thumbs-up icon"></span></a></span></td>
+            <td><span class="pdf-icon" onclick="loadBanner('trabalhos/${id_trabalho}.jpg', ${id_trabalho} )">📄</span></td>
           </tr>
         `;
     });
@@ -651,9 +779,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+<!-- Overlay para exibir a mensagem de aguarde -->
+<div id="overlay" style="display: none;">
+  <div class="overlay-content">
+    Aguarde...
+  </div>
+</div>
 
+<style>
+  /* Estilo para o overlay */
+  #overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro com transparência */
+    z-index: 9999; /* Certifique-se de que ele fique acima de outros elementos */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-
+  .overlay-content {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+  }
+</style>
 
 
 
