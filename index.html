@@ -416,6 +416,8 @@ function createTables() {
                       <th>Nome do Trabalho</th>
                       <th>Autores</th>
                       <th>Banner</th>
+		      <th>Votar</th>
+		      
                     </tr>
                   </thead>
                   <tbody>
@@ -427,7 +429,7 @@ function createTables() {
             <td>${title}</td>
             <td>${author}</td>
             <td><span class="pdf-icon" onclick="loadBanner('trabalhos/${id_trabalho}.jpg')">📄</span></td>
-	    <td><a href="https://script.google.com/macros/s/AKfycbwP2xtiBdArSzS3uZnCHSOOsaKqI5S0WhwCvNQn0juR3DLZuNoyByekGuHZCAjsAkXl/exec?nome=Maria&amp;valor=20" onclick="handleVote(event)"><span class="fas fa-thumbs-up icon"></span></a></span></td>
+	    <td><a href="https://script.google.com/macros/s/AKfycbwP2xtiBdArSzS3uZnCHSOOsaKqI5S0WhwCvNQn0juR3DLZuNoyByekGuHZCAjsAkXl/exec?nome=Maria&amp;valor=${id_trabalho}" onclick="handleVote(event)"><span class="fas fa-thumbs-up icon"></span></a></span></td>
           </tr>
         `;
     });
