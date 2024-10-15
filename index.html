@@ -187,6 +187,51 @@
     </style>
 
 
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
+    <style>
+        .icon {
+            margin-left: 5px; /* Margem para o ícone */
+        }
+    </style>
+    <script>
+        function handleVote(event) {
+            event.preventDefault(); // Impede o redirecionamento do link
+            const nome = "Maria"; // Nome da pessoa
+            const valor = 20; // Valor associado ao voto
+            const url = https://script.google.com/macros/s/AKfycbwP2xtiBdArSzS3uZnCHSOOsaKqI5S0WhwCvNQn0juR3DLZuNoyByekGuHZCAjsAkXl/exec?nome=${encodeURIComponent(nome)}&valor=${encodeURIComponent(valor)};
+            
+            // Aqui você pode fazer a requisição para o Google Apps Script usando Fetch API
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro na resposta do servidor');
+                    }
+                    return response.text(); // ou response.json() se o retorno for JSON
+                })
+                .then(data => {
+                    console.log('Resposta do servidor:', data);
+                    alert('Voto registrado com sucesso!'); // Mensagem de sucesso
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert('Erro ao registrar o voto.'); // Mensagem de erro
+                });
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+	
 </head>
 <body>
 
@@ -440,7 +485,7 @@ function createTables() {
             <td>${title}</td>
             <td>${author}</td>
             <td><span class="pdf-icon" onclick="loadBanner('trabalhos/${id_trabalho}.jpg')">📄</span></td>
-	    <td><a href="https://script.google.com/macros/s/AKfycbwP2xtiBdArSzS3uZnCHSOOsaKqI5S0WhwCvNQn0juR3DLZuNoyByekGuHZCAjsAkXl/exec?nome=Maria&valor=20">Votar<span class="fas-thumbs-up icon"></a></span></td>
+	    <td><    <a href="https://script.google.com/macros/s/AKfycbwP2xtiBdArSzS3uZnCHSOOsaKqI5S0WhwCvNQn0juR3DLZuNoyByekGuHZCAjsAkXl/exec?nome=Maria&amp;valor=20" onclick="handleVote(event)">Votar <span class="fas fa-thumbs-up icon"></span></a></span></td>
           </tr>
         `;
     });
