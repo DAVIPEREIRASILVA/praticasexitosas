@@ -410,25 +410,6 @@ function goBack() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Função para criar as tabelas com base no texto de dados
 function createTables() {
     var data = document.getElementById("data-txt").textContent.trim();
@@ -459,6 +440,7 @@ function createTables() {
             <td>${title}</td>
             <td>${author}</td>
             <td><span class="pdf-icon" onclick="loadBanner('trabalhos/${id_trabalho}.jpg')">📄</span></td>
+	    <td><a href="https://script.google.com/macros/s/AKfycbwP2xtiBdArSzS3uZnCHSOOsaKqI5S0WhwCvNQn0juR3DLZuNoyByekGuHZCAjsAkXl/exec?nome=Maria&valor=20">Votar<span class="fas-thumbs-up icon"></a></span></td>
           </tr>
         `;
     });
