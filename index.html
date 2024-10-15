@@ -9,14 +9,11 @@
     <link type="text/css" href="./arquivos/estilo.css" rel="stylesheet">
     <style>
 
-
-
 .corpo {
     margin: 5px auto;  /* Margens superior e inferior de 5px, centralizado horizontalmente */
     padding: 0 10px;   /* Padding interno lateral reduzido */
     max-width: 90%;   /* Garantir que não seja limitada por Bootstrap */
 }
-
 
 #searchLegend {
     text-align: center;      /* Centraliza o texto */
@@ -24,11 +21,6 @@
     font-weight: bold;       /* Deixa o texto em negrito */
    margin: 50px auto 0;     /* 20px de margem superior, centralizado horizontalmente */         display: block;          /* Permite aplicar margin ao legend */
 }
-
-
-
-
-
 
 .centered-placeholder {
   text-align: center; /* Centraliza horizontalmente o texto */
@@ -41,8 +33,6 @@
   color: #aaa; /* Ajuste de cor, opcional */
 }
 
-
-
         .header-logo {
             position: fixed;
             top: 0;
@@ -51,16 +41,11 @@
             z-index: 1000; /* Garante que o logo esteja acima do restante do conteúdo */
         }
 
-
-
         .header-logo img {
             width: 100%;
             height: auto;
         }
-
-
-
-
+	    
         .fixed-menu {
             position: fixed;
             bottom: 0;
@@ -179,12 +164,8 @@
         #virtualKeyboard .wide-enter {
             grid-column: span 0;
         }
-
-
-
-
-
-    </style>
+	    
+</style>
 
 
 
@@ -485,7 +466,7 @@ function createTables() {
             <td>${title}</td>
             <td>${author}</td>
             <td><span class="pdf-icon" onclick="loadBanner('trabalhos/${id_trabalho}.jpg')">📄</span></td>
-	    <td><    <a href="https://script.google.com/macros/s/AKfycbwP2xtiBdArSzS3uZnCHSOOsaKqI5S0WhwCvNQn0juR3DLZuNoyByekGuHZCAjsAkXl/exec?nome=Maria&amp;valor=20" onclick="handleVote(event)">Votar <span class="fas fa-thumbs-up icon"></span></a></span></td>
+	    <td><a href="https://script.google.com/macros/s/AKfycbwP2xtiBdArSzS3uZnCHSOOsaKqI5S0WhwCvNQn0juR3DLZuNoyByekGuHZCAjsAkXl/exec?nome=Maria&amp;valor=20" onclick="handleVote(event)"><span class="fas fa-thumbs-up icon"></span></a></span></td>
           </tr>
         `;
     });
