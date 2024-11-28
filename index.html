@@ -505,8 +505,12 @@ function loadBanner(bannerPath, idtrabalho) {
     if (bannerView) {
         bannerView.innerHTML = `
 
-
+<!--
  <button class="btn btn-danger" onclick="votar('Desconhecido', ${idtrabalho})">VOTAR NESSE TRABALHO !</button>
+-->
+
+
+
 
 
 <img src="${bannerPath}" alt="Banner" style="width: 100%; height: auto;">`;
